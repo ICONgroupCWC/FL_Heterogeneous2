@@ -1,5 +1,5 @@
 ## Heterogeneity in FL
-This repository contains the distributed implementation for federated learning algorithm under data sets that are heterogeneous. The algorithm is published in the paper titled 'Federated Learning Games for Reconfigurable Intelligent Surfaces via Causal Representations' (https://ieeexplore.ieee.org/document/10437657). 
+This repository contains the distributed implementation for federated learning algorithm under data sets that are heterogeneous. The algorithm is published in the paper titled 'Federated Learning Games for Reconfigurable Intelligent Surfaces via Causal Representations' (https://ieeexplore.ieee.org/document/10437657). The standalone implementation for the above paper can be found in the following repository.(https://github.com/ICONgroupCWC/FL_Heterogeneous) 
 
 Follow instructions given below to run the distributed implementation. The server and client can be run on different hardware
 
