@@ -30,7 +30,7 @@ run *python client_service.py 5000* (or any number for port) on the client devic
 
 **The data to train the model should be stored in a subfolder in _./data_ folder.** 
 
-Once server and the clients are running on dedicated hardware, the request for running the FL task can be initiated by running the *start_fl.py* program. This can be run on any hardware. Install follwing dependencies to run this file.
+Once server and the clients are running on dedicated hardware, the request for running the FL task can be initiated by running the *start_fl.py* program. This can be run on any hardware. Install follwing dependencies to run this file. Network configuration parameters (IP address, port) of server and clients should be updated in the *network_config.yml* file before running the script.
 
 1. [numpy](https://numpy.org/install/) (pip install numpy)  
 2. [websockets](https://websockets.readthedocs.io/en/stable/intro/index.html#installation) (pip install websockets)

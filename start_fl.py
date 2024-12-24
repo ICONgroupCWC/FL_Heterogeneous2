@@ -6,14 +6,17 @@ import json
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
-
+import yaml
 
 async def start_fl():
+    with open('network_config.yml', 'r') as file:
+        network_data = yaml.safe_load(file)
+    host_ip = network_data['host']
     algo = input("Please select algorithm,\n1.Classic Federated Learning\n2.V-FL Games\n:")
     if int(algo) == 1:
-        uri = "ws://10.5.15.51:8200/job_receive"
+        uri = "ws://"+str(host_ip)+"/job_receive"
     else:
-        uri = "ws://10.5.15.51:8200/job_receive_hetero"
+        uri = "ws://"+str(host_ip)+"/job_receive_hetero"
     async with websockets.connect(uri) as websocket:
         task_name = input("Please enter task name: ")
         # algo = input("Please select algorithm,\n1.Classic Federated Learning\n2.V-FL Games\n:")
@@ -54,14 +57,12 @@ async def start_fl():
             loss = 'MSELoss'
 
         folder = input("Please enter dataset folder: ")
-        folder = 'heter_2000'
+
         if int(algo) == 1:
             job_data = {"jobData": {
                 "general": {"task": str(task_name), "method": str(algo), "algo": "Classification",
-                            "host": "10.5.15.51:8200",
-                            "clients": [{"client_ip": "10.5.98.110:5000", "client_id": "5TONIC1"},
-                                        {"client_ip": "10.5.98.111:5000", "client_id": "5TONIC2"},
-                                        {"client_ip": "87.100.232.38:5000", "client_id": "OULU1"}],
+                            "host": str(host_ip),
+                            "clients": network_data['clients'],
                             "plots": [None]},
                 "scheme": {"minibatch": str(minibatch), "epoch": str(epochs),
                            "lr": str(lr), "scheduler": "random", "clientFraction": str(client_fraction),
@@ -72,10 +73,8 @@ async def start_fl():
         else:
             job_data = {"jobData": {
                 "general": {"task": str(task_name), "method": str(algo), "algo": "Classification",
-                            "host": "10.5.15.51:8200",
-                            "clients": [{"client_ip": "10.5.98.110:5000", "client_id": "5TONIC1"},
-                                        {"client_ip": "10.5.98.111:5000", "client_id": "5TONIC2"},
-                                        {"client_ip": "87.100.232.38:5000", "client_id": "OULU1"}],
+                            "host": str(host_ip),
+                            "clients": network_data['clients'],
                             "plots": [None]},
                 "scheme": {"batch_size": str(minibatch), "epoch": str(epochs),
                            "rep_lr": str(rep_lr),"pred_lr": str(pred_lr), "scheduler": "random", "clientFraction": str(client_fraction),

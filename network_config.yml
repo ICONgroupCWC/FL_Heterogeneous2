@@ -1,0 +1,7 @@
+host: "10.5.15.51:8200"
+clients:
+  - client_ip: "10.5.98.110:5000"
+    client_id: "5TONIC1"
+  - client_ip: "10.5.98.111:5000"
+    client_id: "5TONIC2"
+
